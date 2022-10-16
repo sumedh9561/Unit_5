@@ -1,0 +1,29 @@
+
+Question 4: What will be the output of below code and why?
+
+package com.masai.problem_4;
+
+public class CheckOutput {
+
+    public static void main(String args[]) {
+        try {
+            System.out.print("A");
+            int num = 99 / 0;
+            System.out.print("B");
+        } catch (ArithmeticException ex) {
+            System.out.print("C");
+        } catch (Exception ex) {
+            System.out.print("D");
+        }
+        System.out.print("E");
+
+    }
+    }
+
+
+Ans :-
+       Output of this code is ACE because ArithieticException is there in int num=99/0;
+       not allowed to divided by zero
+       It will give erroe but before that A is there that why a printed and after catching ArithmeticException
+       C is printed
+       And after that catching Exception E is also printed.

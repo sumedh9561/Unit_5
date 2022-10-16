@@ -1,0 +1,36 @@
+
+Q2) What’s the difference between class lock and object lock?
+
+
+Class Lock : In java, each and every class has a unique lock usually referred to as a class level lock.
+These locks are achieved using the keyword ‘static synchronized’ and can be used to make static data
+thread-safe. It is generally used when one wants to prevent multiple threads from entering a synchronized block.
+
+Example :
+public class ClassLevelLockExample
+{
+  public void classLevelLockMethod()
+ {
+     synchronized (ClassLevelLockExample.class)
+       {
+            //DO your stuff here
+       }
+ }
+}
+
+Object Lock : In java, each and every object has a unique lock usually referred to as an object-level lock.
+These locks are achieved using the keyword ‘synchronized’ and can be used to protect non-static data.
+It is generally used when one wants to synchronize a non-static method or block so that only the thread
+will be able to execute the code block on a given instance of the class.
+
+Example :
+public class ObjectLevelLockExample
+{
+  public void objectLevelLockMethod()
+ {
+     synchronized (this)
+       {
+            //DO your stuff here
+       }
+ }
+}

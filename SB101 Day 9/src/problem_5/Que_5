@@ -1,0 +1,78 @@
+
+Q5/- What is the Difference between the sleep and join method .
+
+  Ans=>
+
+     To pause the current executing thread for giving the chance of remaining
+     threads of same priority. If a thread wants to wait until completing thread
+     some other threads, then we should go for join. If a thread doesn't want to
+     perform any operation for a particular amount of time, then we should go for
+      sleep() method.
+____________________________________________________________________________________
+      sleep method Example:-
+--------------------------
+             import java.lang.Thread;
+             import java.io.*;
+
+
+             public class TestSleepMethod2
+             {
+                 // main method
+             public static void main(String argvs[])
+             {
+
+             try {
+             for (int j = 0; j < 5; j++)
+             {
+
+             // The main thread sleeps for the 1000 milliseconds, which is 1 sec
+             // whenever the loop runs
+             Thread.sleep(1000);
+
+             // displaying the value of the variable
+             System.out.println(j);
+             }
+             }
+             catch (Exception expn)
+             {
+             // catching the exception
+             System.out.println(expn);
+             }
+             }
+             }
+____________________________________________________________________________________________________________
+   join() method Example:-
+------------------------
+
+            public class Mythread {
+
+                public static void main(String[] args) throws InterruptedException {
+                    Runnable r = new Runnable1();
+                    Thread t = new Thread(r);
+                    t.start();
+                    t.join();
+                    Runnable r2 = new Runnable2();
+                    Thread t2 = new Thread(r2);
+                    t2.start();
+                    t2.join();
+                }
+            }
+
+            class Runnable2 extends  Thread{
+                public void run(){
+                    for(int i=0;i<11;i++){
+                        if(i%2 == 1)
+                            System.out.println(i);
+                    }
+                }
+            }
+
+            class Runnable1 extends  Thread{
+                public void run(){
+                    for(int i=0;i<11;i++){
+                        if(i%2 == 0)
+                            System.out.println(i);
+                    }
+                }
+            }
+____________________________________________________________________________________-

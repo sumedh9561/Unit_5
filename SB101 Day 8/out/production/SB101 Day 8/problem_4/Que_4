@@ -1,0 +1,29 @@
+Q4) What are the different states of a thread, or what is thread lifecycle?
+
+
+Life-cycle of a Thread (State of a thread):
+In Java, a thread always exists in any one of the following states. These states are:
+1. New state
+2. Runnable state
+3. Running state
+4. Blocked state
+5. Dead state
+
+New: Whenever a new thread is created, it is always in the new state. For a thread in the new state,
+the code has not been run yet and thus has not begun its execution.
+
+Runnable: A thread, that is ready to run is then moved to the runnable state. In the runnable state,
+the thread may be running or may be ready to run at any given instant of time. It is the duty of the thread
+scheduler to provide the thread time to run, i.e., moving the thread the running state.
+
+Running: When the thread gets the CPU, it moves from the runnable to the running state. Generally, the
+most common change in the state of a thread is from runnable to running and again back to runnable.
+
+Blocked or Waiting: Whenever a thread is inactive for a span of time (not permanently) then, either the
+thread is in the blocked state or is in the waiting state.
+
+Terminated: A thread reaches the termination state because of the following reasons:
+When a thread has finished its job, then it exists or terminates normally.
+Abnormal termination: It occurs when some unusual events such as an unhandled exception or segmentation fault.
+A terminated thread means the thread is no more in the system. In other words, the thread is dead, and there
+is no way one can respawn (active after kill) the dead thread.

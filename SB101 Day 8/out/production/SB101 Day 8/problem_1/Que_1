@@ -1,0 +1,17 @@
+
+Q1) What do you mean by Multithreading? Why is it important?
+
+ans:
+Multithreading is a programming concept in which the application can create a small unit of tasks to execute in
+parallel. If you are working on a computer, it runs multiple applications and allocates processing power to them. A
+simple program runs in sequence and the code statements execute one by one. This is a single-threaded application.
+But, if the programming language supports creating multiple threads and passes them to the operating system to run
+in parallel, it’s called multithreading.
+Multithreading in Java is a process of executing multiple threads simultaneously.
+A thread is a lightweight sub-process, the smallest unit of processing. Multiprocessing and multithreading, both are
+used to achieve multitasking.
+
+multithreading important in Java
+Multithreading saves time as you can perform multiple operations together. The threads are independent, so it does not
+block the user to perform multiple operations at the same time and also, if an exception occurs in a single thread, it does
+not affect other threads

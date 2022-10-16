@@ -1,0 +1,46 @@
+
+question2
+What are the benefits of using Multithreading?
+
+ans:
+Benefits of Multithreading
+1. Responsiveness
+Multithreading in an interactive application enables a program to continue running even if a section is blocked
+or executing a lengthy process, increasing user responsiveness.
+A server in a non-multithreading environment listens to a port for a request, processes the request, and then
+resumes listening for another request. Other users are made to wait unnecessarily because of the time it takes to
+execute a request. Instead, a better approach will be to pass the request to a worker thread while listening on a port.
+
+2. Resource Sharing
+Processes can only share the resources only via two techniques such as:
+Message Passing
+Shared Memory
+The programmer must explicitly structure such strategies. On the other hand, by default, threads share the memory
+and resources of the process they belong to.
+The advantage of sharing code and data is that it permits an app to execute multiple code threads in the same address space.
+
+3. Economy
+Allocating memory and resources for process creation is an expensive procedure because it is a time and space-consuming task.
+Because threads share a memory with the process to which they belong, establishing and context switching threads is more
+cost-effective. In general, generating and managing processes takes far more time than threads.
+
+4. Scalability
+The advantages of multi-programming become much more apparent in the case of multiprocessor architecture, when threads
+may execute in parallel on many processors. When there is just one thread, it is impossible to break the processes into
+smaller jobs performed by different processors. A single-threaded process could only run on one processor, despite
+the number of processors available. Multithreading on multiple CPU machines increases parallelism.
+
+5. Better Communication
+Thread synchronization functions could be used to improve inter-process communication. Moreover, sharing huge
+amounts of data across multiple threads of execution inside the same address space provides extremely high-bandwidth,
+low-latency communication across various tasks within an application.
+
+6. Utilization of multiprocessor architecture
+The advantages of multithreading might be considerably amplified in a multiprocessor architecture, where every
+thread could execute in parallel on a distinct processor.A single-threaded task could only run on one of them, no matter
+how many CPUs are available. On a multi-CPU machine, multithreading enhances concurrency.The CPU switches among threads
+so quickly in single-processor architecture that it creates the illusion of parallelism, but only one thread is running at a particular time.
+
+7. Minimized system resource usage
+Threads have a minimal influence on the system's resources. The overhead of creating, maintaining, and managing threads
+is lower than a general process

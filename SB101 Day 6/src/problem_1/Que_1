@@ -1,0 +1,41 @@
+Q1 :- Write down some predefined Functional interfaces in the java library at least 4
+interfaces, with their methods.
+
+ans:-
+1. predicate:
+it takes single parameter from the caller and return boolean value
+
+method:
+public <T> boolean test(T t){
+
+      return true/false;
+}
+
+2.consumer:
+it takes single parameter from the caller and returns nothing (void type).
+
+method:
+
+public <T> void accept(T t){
+
+}
+
+3.supplier:
+it dont take any kind of value but still supply you a return value of your choice.
+
+public <R> get(){
+
+return (R type of value or null) ;
+}
+
+4.Function
+
+it is mixture of consumer and supplier it takes and return any kind of value as you wish
+both can be same as well as diffrent according to you.
+
+method:
+
+public <T,R> R apply(<T> t){
+
+return (R type of value or null) ;
+}

@@ -1,0 +1,48 @@
+
+
+There are 3 types of relationships. 
+
+1)one to one
+2) one to many
+3) many to many
+
+1:One to One:
+
+
+ When one record in the first table relates to only one record in the second table and vice versa
+ 
+ It is used to create a relationship between two tables in 
+ which a single row of the first table can only be related to one and only one records of a second table. Similarly
+  the row of a second table can also be related to anyone row of the first table.
+  
+  example:
+  
+ example: 
+ Assume that Table A contains general data of 
+ students like Name,Surname,id card number, address etc. And Table B contains their 
+ total yearly grades at school. And to be able to track which grade belongs which student we have same 
+ id card number column on Table B too. we need total yearly grade record of student, we 
+ can access it using its id card number to search on Table B. 
+ 
+ 
+
+2:One to Many:
+
+One record in the first table relates to many records in the second table but one record of the 
+second table can only relate to one record of the 
+first table
+
+example:
+we may have one to many relationship between a person and 
+bank account where one person can have many 
+bank accounts but a bank account can only have one specific owner
+
+
+
+3:many to many:
+One record in the first table relates to many records in the second table and vice versa
+
+
+example:
+student and course where one student can take many 
+courses and each course can be taken by many students.

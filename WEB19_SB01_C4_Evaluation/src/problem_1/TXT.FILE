@@ -1,0 +1,56 @@
+
+
+* creating student and course table
+and Establish Many-to-Many relationships between the Student and the Course table.
+
+create table student(
+roll int primary key,
+name varchar(12) not null,
+address varchar(12) not null,
+mobile varchar(10) not null
+);
+
+
+
+create table course(
+cid int primary key,
+cname varchar(12) not null,
+fee int not null,
+duration varchar(12) not null
+);
+
+
+
+create table student_course(
+roll2 int,
+cid2 int,
+foreign key(roll2) references student(roll),
+foreign key(cid2) references course(cid)
+);
+
+
+
+
+
+SQL
+
+
+
+mysql> use SB101_c4;
+Database changed
+mysql> create table student(roll int primary key,name varchar(12) not null,address varchar(12) not null,mobile varchar(10) not null);
+Query OK, 0 rows affected (0.04 sec)
+
+
+
+
+mysql> create table course(cid int primary key,cname varchar(12) not null,fee int not null,duration varchar(12) not null);
+Query OK, 0 rows affected (0.03 sec)
+
+
+
+
+
+mysql> create table student_course(roll2 int,cid2 int,foreign key(roll2) references student(roll),foreign key(cid2) references course(cid));
+Query OK, 0 rows affected (0.04 sec)
+

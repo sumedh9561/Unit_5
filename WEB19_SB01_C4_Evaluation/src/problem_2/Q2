@@ -1,0 +1,175 @@
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 34
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sumedhdb;
+Database changed
+mysql> create table Department(did int, dname varchar(12), location varchar(12));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table Employee(empId int primary key, ename varchar(12) not null, address varchar(12) not null, mobile varchar(12) not null, salary int not null, deptId int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc Department;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| did      | int         | YES  |     | NULL    |       |
+| dname    | varchar(12) | YES  |     | NULL    |       |
+| location | varchar(12) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc Employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| empId   | int         | NO   | PRI | NULL    |       |
+| ename   | varchar(12) | NO   |     | NULL    |       |
+| address | varchar(12) | NO   |     | NULL    |       |
+| mobile  | varchar(12) | NO   |     | NULL    |       |
+| salary  | int         | NO   |     | NULL    |       |
+| deptId  | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table Department add primary key (did);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Department;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| did      | int         | NO   | PRI | NULL    |       |
+| dname    | varchar(12) | YES  |     | NULL    |       |
+| location | varchar(12) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Department values(1, 'Account', 'chennai'),
+    -> (2, 'Sales', 'Nagpur'),
+    -> (3, 'Marketing', 'Hariyana'),
+    -> (4, 'HR', 'Amravti');
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++-----+-----------+----------+
+| did | dname     | location |
++-----+-----------+----------+
+|   1 | Account   | chennai  |
+|   2 | Sales     | Nagpur   |
+|   3 | Marketing | Hariyana |
+|   4 | HR        | Amravti  |
++-----+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Employee values (1, "sagar", "Sasti", "1111111111", 10000, 1),
+    -> (2, "Banti", "Digrass", "2222222222", 20000, 1),
+    -> (3, "suraj", "Akola", "3333333333", 33000, 2),
+    -> (4, "sumedh", "washim", "4444444444", 40000, 2),
+    -> (5, "Amar", "Kolhapur", "5555555555", 56000, 2),
+    -> (6, "sachin", "solapur", "6666666666", 70000, 3),
+    -> (7, "Pawan", "satara", "7777777777", 67000, 3),
+    -> (8, "Gopal", "sangali", "8888888888", 71000, 4),
+    -> (9, "Satish", "nagar", "9999999999", 59000, 4);
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++-------+--------+----------+------------+--------+--------+
+| empId | ename  | address  | mobile     | salary | deptId |
++-------+--------+----------+------------+--------+--------+
+|     1 | sagar  | Sasti    | 1111111111 |  10000 |      1 |
+|     2 | Banti  | Digrass  | 2222222222 |  20000 |      1 |
+|     3 | suraj  | Akola    | 3333333333 |  33000 |      2 |
+|     4 | sumedh | washim   | 4444444444 |  40000 |      2 |
+|     5 | Amar   | Kolhapur | 5555555555 |  56000 |      2 |
+|     6 | sachin | solapur  | 6666666666 |  70000 |      3 |
+|     7 | Pawan  | satara   | 7777777777 |  67000 |      3 |
+|     8 | Gopal  | sangali  | 8888888888 |  71000 |      4 |
+|     9 | Satish | nagar    | 9999999999 |  59000 |      4 |
++-------+--------+----------+------------+--------+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from employee inner join department on employee.deptId = department.did;
++-------+--------+----------+------------+--------+--------+-----+-----------+----------+
+| empId | ename  | address  | mobile     | salary | deptId | did | dname     | location |
++-------+--------+----------+------------+--------+--------+-----+-----------+----------+
+|     1 | sagar  | Sasti    | 1111111111 |  10000 |      1 |   1 | Account   | chennai  |
+|     2 | Banti  | Digrass  | 2222222222 |  20000 |      1 |   1 | Account   | chennai  |
+|     3 | suraj  | Akola    | 3333333333 |  33000 |      2 |   2 | Sales     | Nagpur   |
+|     4 | sumedh | washim   | 4444444444 |  40000 |      2 |   2 | Sales     | Nagpur   |
+|     5 | Amar   | Kolhapur | 5555555555 |  56000 |      2 |   2 | Sales     | Nagpur   |
+|     6 | sachin | solapur  | 6666666666 |  70000 |      3 |   3 | Marketing | Hariyana |
+|     7 | Pawan  | satara   | 7777777777 |  67000 |      3 |   3 | Marketing | Hariyana |
+|     8 | Gopal  | sangali  | 8888888888 |  71000 |      4 |   4 | HR        | Amravti  |
+|     9 | Satish | nagar    | 9999999999 |  59000 |      4 |   4 | HR        | Amravti  |
++-------+--------+----------+------------+--------+--------+-----+-----------+----------+
+9 rows in set (0.00 sec)
+
+mysql> select deptId, sum(salary) from employee group by deptId;
++--------+-------------+
+| deptId | sum(salary) |
++--------+-------------+
+|      1 |       30000 |
+|      2 |      129000 |
+|      3 |      137000 |
+|      4 |      130000 |
++--------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee inner join department on employee.deptId = department.did where dname = 'sales';
++-------+--------+----------+------------+--------+--------+-----+-------+----------+
+| empId | ename  | address  | mobile     | salary | deptId | did | dname | location |
++-------+--------+----------+------------+--------+--------+-----+-------+----------+
+|     3 | suraj  | Akola    | 3333333333 |  33000 |      2 |   2 | Sales | Nagpur   |
+|     4 | sumedh | washim   | 4444444444 |  40000 |      2 |   2 | Sales | Nagpur   |
+|     5 | Amar   | Kolhapur | 5555555555 |  56000 |      2 |   2 | Sales | Nagpur   |
++-------+--------+----------+------------+--------+--------+-----+-------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from department inner join employee on employee.deptId = department.did where empId = 5;
++-----+-------+----------+-------+-------+----------+------------+--------+--------+
+| did | dname | location | empId | ename | address  | mobile     | salary | deptId |
++-----+-------+----------+-------+-------+----------+------------+--------+--------+
+|   2 | Sales | Nagpur   |     5 | Amar  | Kolhapur | 5555555555 |  56000 |      2 |
++-----+-------+----------+-------+-------+----------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select did, dname, location from department inner join employee on employee.deptId = department.did where empId = 5;
++-----+-------+----------+
+| did | dname | location |
++-----+-------+----------+
+|   2 | Sales | Nagpur   |
++-----+-------+----------+
+1 row in set (0.00 sec)
+
+mysql> select did, dname, location, empId from department inner join employee on employee.deptId = department.did where empId = 5;
++-----+-------+----------+-------+
+| did | dname | location | empId |
++-----+-------+----------+-------+
+|   2 | Sales | Nagpur   |     5 |
++-----+-------+----------+-------+
+1 row in set (0.00 sec)
+
+mysql> select *  , max(salary) as salary from employee where salary <> (select max(salary) from employee);
++-------+-------+---------+------------+--------+--------+--------+
+| empId | ename | address | mobile     | salary | deptId | salary |
++-------+-------+---------+------------+--------+--------+--------+
+|     1 | sagar | Sasti   | 1111111111 |  10000 |      1 |  70000 |
++-------+-------+---------+------------+--------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql>

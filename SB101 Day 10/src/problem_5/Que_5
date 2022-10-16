@@ -1,0 +1,42 @@
+Q5/- What is the difference between the sleep and wait method?
+
+
+Sleep(): This Method is used to pause the execution of current thread for a specified time in Milliseconds.
+Here, Thread does not lose its ownership of the monitor and resume’s it’s execution
+Sleep() method belongs to Thread class.
+Sleep() method does not release the lock on object during Synchronization.
+There is no need to call sleep() from Synchronized context.
+Sleep() is a static method.
+Sleep() Has Two Overloaded Methods:
+sleep(long millis)millis: milliseconds
+sleep(long millis,int nanos) nanos: Nanoseconds
+public static void sleep(long millis) throws Interrupted_Execption
+
+Example For Sleep Method:
+
+synchronized(monitor)
+{
+Thread.sleep(1000);  Here Lock Is Held By The Current Thread
+//after 1000 milliseconds, current thread will wake up, or after we call that is interrupt() method
+}
+
+
+Wait(): This method is defined in object class. It tells the calling thread (a.k.a Current Thread) to wait
+until another thread invoke’s the notify() or notifyAll() method for this object, The thread waits until it
+reobtains the ownership of the monitor and Resume’s Execution.
+
+Wait() method belongs to Object class.
+Wait() should be called only from Synchronized context.
+Wait() is not a static method.
+Wait() Has Three Overloaded Methods:
+wait()
+wait(long timeout)
+wait(long timeout, int nanos)
+public final void wait(long timeout)
+
+Example For wait Method:
+
+synchronized(monitor)
+{
+monitor.wait()  Here Lock Is Released By Current Thread
+}

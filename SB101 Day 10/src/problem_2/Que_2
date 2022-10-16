@@ -1,0 +1,44 @@
+
+Q2 What is a ThreadPool, how to create a thread pool of 4 threads, and write down the
+difference between the Callable and Runnable interface.
+
+
+Thread Pool:
+Thread pool represents a group of worker threads that are waiting for the job and reused many times.In the case of a thread pool,
+a group of fixed-size threads is created. A thread from the thread pool is pulled out and assigned a job by the service provider.
+After completion of the job, the thread is contained in the thread pool again.
+
+ExecutorService service=Executors.newFixedThreadPool(4);
+
+Callable Interface
+
+ In a callable interface that basically throws a checked exception and returns some results. This is one of the major differences
+ between the upcoming Runnable interface where no value is being returned. In this interface, it simply computes a result else
+ throws an exception if unable to do so.
+
+public interface Callable<V>
+{
+  V call() throws exception ;
+}
+It is declared in the ‘java.util.concurrent‘ package.
+This interface also contains a single, no-argument method, called call() method
+We can’t create a thread by passing callable as a parameter.
+Callable can return results. Callable’s call() method contains the “throws Exception” clause, so we can easily propagate checked
+exceptions further.
+
+
+Runnable interface
+
+When an object implementing this interface is used to create a thread, starting the thread causes the object run method to be called
+in a separately executing thread. The general. contract of this run() method is that it may take any action whatsoever.
+
+public interface Runnable
+{
+  public abstract void run();
+}
+java.lang.Runnable is an interface and defines only one method called run().
+It represents a task in Java that is executed by Thread.
+There are two ways to start a new thread using Runnable, one is by implementing the Runnable interface and another one is by
+subclassing the Thread class.
+Runnable cannot return the result of computation which is essential if you are performing some computing task in another
+thread, and Runnable cannot throw checked exceptions.

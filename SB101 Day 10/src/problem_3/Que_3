@@ -1,0 +1,83 @@
+
+Q3/- What do you mean by a Race condition, How to solve a race condition, give a proper
+example.
+
+
+Java is a multi-threaded programming language and there is a higher risk to occur race conditions.
+Because the same resource may be accessed by multiple threads at the same time and may change the data.
+We can say that race condition is a concurrency bug. It is closely related to deadlock in Java. In this
+section, we will implement the race condition in Java.
+
+For example, if thread A is reading data from the linked list and another thread B is trying to delete the same data. This process leads to a race condition that may result in run time error.
+
+There are two types of race conditions:
+
+Read-modify-write
+Check-then-act'
+The read-modify-write patterns signify that more than one thread first read the variable, then alter the given value and write it back to that variable. Let's have a look at the following code snippet.
+
+public class number
+{
+protected long number = 0;
+public void add(long value)
+{
+this.number = this.number + value;
+}
+}
+
+class Counter implements Runnable
+{
+private int c = 0;
+public void increment()
+{
+try
+{
+Thread.sleep(10);
+}
+catch (InterruptedException e)
+{
+//Auto-generated catch block
+e.printStackTrace();
+}
+c++;
+}
+public void decrement()
+{
+c--;
+}
+public int getValue()
+{
+return c;
+}
+@Override
+public void run()
+{
+//incrementing
+this.increment();
+System.out.println("Value for Thread After increment " + Thread.currentThread().getName() + " " + this.getValue());
+//decrementing
+this.decrement();
+System.out.println("Value for Thread at last " + Thread.currentThread().getName() + " " + this.getValue());
+}
+}
+public class RaceConditionDemo
+{
+public static void main(String args[])
+{
+Counter counter = new Counter();
+Thread t1 = new Thread(counter, "Thread-1");
+Thread t2 = new Thread(counter, "Thread-2");
+Thread t3 = new Thread(counter, "Thread-3");
+t1.start();
+t2.start();
+t3.start();
+}
+}
+Output:
+
+Value for Thread After increment Thread-1 2
+Value for Thread at last Thread-1 2
+Value for Thread After increment Thread-3 3
+Value for Thread at last Thread-3 1
+Value for Thread After increment Thread-2 2
+Value for Thread at last Thread-2 0

@@ -1,0 +1,33 @@
+
+Q5)Explain Difference between Upper Bounded Wildcards and Lower Bounded Wildcards with Example.
+
+Ans :-
+
+      * Upper Bounded Wildcards
+
+      => ? extends T : In Upper bounded wildcard only T or its subtypes will be supported. For example
+         we have an Animal class and have Dog , Cat as its subtypes. So following generic methods will
+         only accept parameters of type Data<Animal>, Data<Dog> and Data<Cat>
+
+      EX.
+          public static void add(Data<? extends Animal> animalData) {
+
+          }
+
+
+     * Lower Bounded Wildcards
+
+      => ? super T : In Lower-bounded wildcard only T or its super types will be supported. Same example
+         we used for defining Lower-bounded Wildcard. Lets say we have Animal class as super or parent class
+         and Dog as its child class. Now below method use Lower-bounded Wildcard and will only accept parameters
+         of type
+
+
+       EX.
+            Data<Animal>, Data<Dog> and  Data<Object>
+
+            public static void add(Data<? super Dog> animalData) {
+
+            }
+
+

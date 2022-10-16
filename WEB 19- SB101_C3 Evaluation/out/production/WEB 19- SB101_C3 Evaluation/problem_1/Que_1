@@ -1,0 +1,94 @@
+Q1)Explain the meaning of the deadlock in multi-threaded application, when it can occur in
+multithreading applications.Write one example of deadlock.
+
+Ans:-
+	Deadlock in java is a condition where two or more threads are blocked(hung) forever,because they are
+	waiting for each other.
+	Deadlock occurs when multiple threads need the same locks but obtain them in different order.
+
+	multithreaded programming in java suffers from the deadlock situation because of the synchronized keyword.
+
+
+	example:
+		package com.masai.c3.problem1;
+
+		public class Deadlockexm {
+			public static Object Lock1=new  Object();
+			public static Object Lock2=new  Object();
+
+			public static void main(String[] args) {
+				ThreadDemo1 T1=new ThreadDemo1();
+				ThreadDemo2 T2=new ThreadDemo2();
+				T1.start();
+				T2.start();
+
+			}
+
+		}
+		//Thread1
+		===============================
+		package com.masai.c3.problem1;
+
+public class ThreadDemo1 extends Thread {
+
+	public static Object Lock1=new  Object();
+	public static Object Lock2=new  Object();
+
+	public void run() {
+		synchronized (Lock1) {
+			System.out.println("Thread 1: holding lock1....");
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				System.out.println(e.getMessage());
+			}
+			System.out.println("Thread 1:waiting for Lock 2......");
+			synchronized (Lock2) {
+				System.out.println("Thread 1: holding lock 1 & 2");
+			}
+		}
+	}
+
+}
+					Thread2
+		===========================
+
+
+package com.masai.c3.problem1;
+
+public class ThreadDemo2 extends Thread {
+
+	public static Object Lock1=new  Object();
+	public static Object Lock2=new  Object();
+
+	public void run() {
+		synchronized (Lock1) {
+			System.out.println("Thread 2: holding lock1....");
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				System.out.println(e.getMessage());
+			}
+			System.out.println("Thread 2:waiting for Lock 2......");
+			synchronized (Lock2) {
+				System.out.println("Thread 2: holding lock 1 & 2");
+			}
+		}
+	}
+
+}
+
+
+
+	When you execute above code  you find a deadlock situation
+	and following output is.
+			Thread 1: holding lock1....
+			Thread 2: holding lock1....
+			Thread 1:waiting for Lock 2......
+			Thread 2:waiting for Lock 2......
+			Thread 2: holding lock 1 & 2
+			Thread 1: holding lock 1 & 2
+
+		In code will hang forever because neither of the thread
+		in position to proceed and waiting for each other to release
+		the lock.
